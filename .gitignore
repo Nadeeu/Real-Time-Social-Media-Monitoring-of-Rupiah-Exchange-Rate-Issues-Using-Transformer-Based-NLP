@@ -1,0 +1,38 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+venv/
+env/
+.env
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Data
+# Mengabaikan semua file data berukuran besar, tetapi tetap menyimpan struktur folder (.gitkeep)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# Models
+# Mengabaikan file model berukuran besar, tetapi tetap menyimpan struktur folder (.gitkeep)
+models/*
+!models/.gitkeep
+*.pt
+*.pth
+*.h5
+*.pkl
+*.bin
+*.joblib
+
+# VS Code / IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
