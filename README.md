@@ -49,28 +49,44 @@ The goal is to provide a structured approach for understanding how economic issu
 
 ## System Workflow
 
-The system follows an NLP pipeline from data acquisition to visualization.
+The system processes social media data through several stages before generating crisis indicators and interactive visualizations.
 
 ```text
-Social Media Data Collection
-            ↓
-Text Cleaning and Preprocessing
-            ↓
-Text Normalization
-            ↓
-Sentiment Analysis
-(Indonesian RoBERTa)
-            ↓
-Topic Modeling
-(BERTopic)
-            ↓
-Macro Topic Grouping
-            ↓
-Topic Weighting
-            ↓
-Crisis Score Detection
-            ↓
-Interactive Dashboard
+                            Raw Tweets
+                  (id, text, created_at)
+                                   │
+                                   ↓
+                      Remove Duplicate Data
+                                   │
+                                   ↓
+                         Remove Missing Values
+                                   │
+                                   ↓
+                              Text Cleaning
+                                   │
+                                   ↓
+                            Text Normalization
+                                   │
+                 ┌─────────────────┴─────────────────┐
+                 │                                   │
+                 │                                   │
+                 ↓                                   ↓
+      Sentiment Analysis                     Topic Modeling
+          (RoBERTa)                            (BERTopic)
+                 │                                   │
+                 ↓                                   ↓
+         id, sentiment                         id, topic
+                 │                                   │
+                 └─────────────────┬─────────────────┘
+                                   │
+                                   ↓
+                                Merge
+                                   │
+                                   ↓
+                         Crisis Detection
+                                   │
+                                   ↓
+                        Interactive Dashboard
 ```
 
 ---
