@@ -246,6 +246,40 @@ class TopicAnalyzer:
         return df
 
 
+    def load(self,path):
+
+        self.topic_model=BERTopic.load(
+            str(path),
+            embedding_model=self.embedding_model
+        )
+
+
+    def save(self,path):
+
+        self.topic_model.save(
+            str(path),
+            serialization="pickle",
+            save_ctfidf=True,
+            save_embedding_model=False
+        )
+
+
+    def transform(self,df):
+
+        documents=(
+            df["clean_text"]
+            .fillna("")
+            .astype(str)
+            .tolist()
+        )
+
+        topics,_=self.topic_model.transform(documents)
+
+        df["topic"]=topics
+
+        return df
+
+
     def get_model(self):
 
         return self.topic_model

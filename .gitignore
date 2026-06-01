@@ -28,5 +28,8 @@ tmp/
 # Checkpoint
 data/processed/checkpoint_sentiment.csv
 
+# Pipeline log (local only)
+data/pipeline.log
+
 # System
 .DS_Store

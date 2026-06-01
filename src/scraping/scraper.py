@@ -17,9 +17,7 @@ class TwitterScraper:
     def scrape(
         self,
         search_terms,
-        start_date,
-        end_date,
-        max_items=2
+        max_items=50
     ):
 
         run_input={
@@ -49,12 +47,7 @@ class TwitterScraper:
             "maxItems":max_items,
             "queryType":"Latest",
 
-            "searchTerms":search_terms,
-
-            "twitterContent":(
-                f"since:{start_date} "
-                f"until:{end_date}"
-            )
+            "searchTerms":search_terms
 
         }
 
