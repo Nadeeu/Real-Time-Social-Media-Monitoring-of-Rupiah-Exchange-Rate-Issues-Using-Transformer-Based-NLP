@@ -18,7 +18,7 @@ CLEAN_PATH     = BASE_DIR / "data" / "processed" / "twitter_data_cleaned.csv"
 SENTIMENT_PATH = BASE_DIR / "data" / "processed" / "sentiment_data.csv"
 TOPIC_PATH     = BASE_DIR / "data" / "processed" / "topic_data.csv"
 FINAL_PATH     = BASE_DIR / "data" / "processed" / "final_data.csv"
-TOPIC_MODEL_PATH = BASE_DIR / "data" / "topic_model.pkl"
+TOPIC_MODEL_PATH = BASE_DIR / "data" / "topic_model"
 STATE_PATH     = BASE_DIR / "data" / "state.json"
 
 

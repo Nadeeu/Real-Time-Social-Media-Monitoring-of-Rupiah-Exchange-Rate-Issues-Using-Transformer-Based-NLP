@@ -16,3 +16,4 @@ python-dotenv
 emoji
 regex
 tqdm
+safetensors

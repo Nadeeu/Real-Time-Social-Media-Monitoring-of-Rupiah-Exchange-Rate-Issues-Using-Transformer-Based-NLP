@@ -2,8 +2,8 @@ name: Run Pipeline
 
 on:
   schedule:
-    # Runs every day at 08:00 WIB (01:00 UTC)
-    - cron: "0 1 * * *"
+    # Runs every day at 20:00 WIB (13:00 UTC)
+    - cron: "0 13 * * *"
   workflow_dispatch: # allow manual trigger from GitHub UI
 
 jobs:
@@ -51,6 +51,6 @@ jobs:
           git add data/raw/twitter_data.csv
           git add data/processed/
           git add data/state.json
-          git add data/topic_model/
+          git add data/topic_model
           git diff --cached --quiet || git commit -m "chore: update data [$(date -u '+%Y-%m-%d %H:%M UTC')]"
           git push

@@ -258,7 +258,7 @@ class TopicAnalyzer:
 
         self.topic_model.save(
             str(path),
-            serialization="pickle",
+            serialization="safetensors",
             save_ctfidf=True,
             save_embedding_model=False
         )
