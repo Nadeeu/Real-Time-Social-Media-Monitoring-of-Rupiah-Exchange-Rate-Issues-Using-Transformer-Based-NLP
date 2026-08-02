@@ -11,7 +11,7 @@ class TextPreprocessor:
 
     def select_columns(self):
 
-        columns=[
+        columns = [
             'id',
             'url',
             'text',
@@ -25,16 +25,51 @@ class TextPreprocessor:
             'bookmarkCount'
         ]
 
-        self.df=self.df[columns]
+        aliases = {
+            "url": ["twitterUrl"],
+            "createdAt": ["created_at", "date"],
+            "lang": ["language", "langCode"],
+        }
+
+        defaults = {
+            "retweetCount": 0,
+            "replyCount": 0,
+            "likeCount": 0,
+            "quoteCount": 0,
+            "viewCount": 0,
+            "bookmarkCount": 0,
+            "createdAt": pd.Timestamp.utcnow().isoformat(),
+            "lang": "in",
+        }
+
+        selected = {}
+        for column in columns:
+            if column in self.df.columns:
+                selected[column] = self.df[column]
+                continue
+
+            alias = next(
+                (alt for alt in aliases.get(column, []) if alt in self.df.columns),
+                None
+            )
+            if alias is not None:
+                selected[column] = self.df[alias]
+                continue
+
+            selected[column] = defaults.get(column, pd.NA)
+
+        self.df = pd.DataFrame(selected)
 
         return self
 
 
     def extract_author(self):
 
-        self.df['author']=self.df['url'].str.extract(
-            r"x\.com/([^/']+)"
+        self.df['author'] = self.df['url'].fillna("").astype(str).str.extract(
+            r"(?:x|twitter)\.com/([^/']+)"
         )
+
+        self.df['author'] = self.df['author'].replace("", pd.NA).fillna("unknown")
 
         self.df.drop(
             columns=['url'],
